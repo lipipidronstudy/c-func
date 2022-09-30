@@ -14,19 +14,63 @@ int tail = 0;
 int flagPush = 0;
 int flagPop = 0;
 
-void printArray(int mass[], int n) {
+void printArrayInt(int mass[], int n) {
     for (int i = 0; i < n; ++i) {
         cout << mass[i] << ' ';
     }
-
+    cout << endl;
 }
 
-void fillArray(int mass[], int n) {
+void fillArrayInt(int mass[], int n) {
     for (int i = 0; i < n; ++i) {
         cin >> mass[i];
     }
 }
 
+void fillArrayIntRandom(int mass[], int n) {
+    for (int i = 0; i < n; ++i) {
+        mass[i] = rand();
+    }
+}
+
+void printArrayString(string mass[], int n) {
+    for (int i = 0; i < n; ++i) {
+        cout << mass[i] << ' ';
+    }
+    cout << endl;
+}
+
+void fillArrayString(string mass[], int n) {
+    for (int i = 0; i < n; ++i) {
+        cin >> mass[i];
+    }
+}
+
+void printArrayChar(char mass[], int n) {
+    for (int i = 0; i < n; ++i) {
+        cout << mass[i] << ' ';
+    }
+    cout << endl;
+}
+
+void fillArrayChar(char mass[], int n) {
+    for (int i = 0; i < n; ++i) {
+        cin >> mass[i];
+    }
+}
+
+void printArrayFloat(float mass[], int n) {
+    for (int i = 0; i < n; ++i) {
+        cout << mass[i] << ' ';
+    }
+    cout << endl;
+}
+
+void fillArrayFloat(float mass[], int n) {
+    for (int i = 0; i < n; ++i) {
+        cin >> mass[i];
+    }
+}
 
 void swap(int *a, int *b) {
     int c = *a;
@@ -201,36 +245,47 @@ int popQ(int mass[], int n) {
         return -1;
     }
 }
-    int binpoiskF(int mass[], int left, int right, int isk) {
-        int l = left;
-        int r = right;
-        while (l < r - 1) {
-            int m = (l + r) / 2;
-            if (mass[m] < isk) {
-                l = m;
-            } else {
-                r = m;
-            }
-        }
-        return r;
-    }
 
-    int binpoiskL(int mass[], int left, int right,int isk,int bf){
-    if (bf == 0){
-        left = binpoiskF(mass,left,right,isk);
-    }
+int binpoiskF(int mass[], int left, int right, int isk) {
     int l = left;
     int r = right;
-    while (l < r-1) {
-        int m = (l+r)/2;
-        if (mass[m] == isk){
+    while (l < r - 1) {
+        int m = (l + r) / 2;
+        if (mass[m] < isk) {
             l = m;
         } else {
             r = m;
         }
     }
-    return r-1;
+    return r;
 }
+
+int binpoiskL(int mass[], int left, int right, int isk, int bf) {
+    if (bf == 0) {
+        left = binpoiskF(mass, left, right, isk);
+    }
+    int l = left;
+    int r = right;
+    while (l < r - 1) {
+        int m = (l + r) / 2;
+        if (mass[m] == isk) {
+            l = m;
+        } else {
+            r = m;
+        }
+    }
+    return r - 1;
+}
+
+void AntiQuickSort(int mass[], int n) {
+    for (int i = 0; i < n; ++i) {
+        mass[i] = i + 1;
+    }
+    for (int i = 2; i < n; ++i) {
+        swap(mass[i], mass[i / 2]);
+    }
+}
+
 
 
 
